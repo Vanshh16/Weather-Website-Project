@@ -1,0 +1,37 @@
+<%- include("header") -%>
+
+
+<h3>Weather is <%= weatherData.weather[0].description%> .</h3>
+<h1>Temperature of <%=cityName%> is <%=weatherData.main.temp%> &deg; C</h1>
+<img src= <%=imageURL%> >
+
+<% let dt = new Date(weatherData.dt * 1000).toLocaleString();%>
+<% let sunrise = new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString();%>
+<% let sunset = new Date(weatherData.sys.sunset * 1000).toLocaleTimeString();%>
+<% let windSp = ((weatherData.wind.speed) * 18/5).toFixed(2); %>
+
+<%# Degree to direction %>
+<% const directions = ['↑ N', '↗ NE', '→ E', '↘ SE', '↓ S', '↙ SW', '← W', '↖ NW']; %>
+<% let windDir = directions[Math.round(weatherData.wind.deg / 45) % 8]; %>
+<h4><%=weatherData.name%> </h4>
+<h4>Latitude:<%= weatherData.coord.lon%> </h4>
+<h4>Longitude:<%= weatherData.coord.lat%> </h4>
+<h4>Main:<%= weatherData.weather[0].main%> </h4>
+<h4>Feels like:<%= weatherData.main.feels_like%> </h4>
+<h4>Maximum temperature:<%= weatherData.main.temp_max%>&deg; C</h4>
+<h4>Minimum temperature:<%= weatherData.main.temp_min%>&deg; C </h4>
+<h4>Pressure:<%= weatherData.main.pressure%> </h4>
+<h4>Humidity:<%= weatherData.main.humidity%>hPa %</h4>
+<h4>Visibilty:<%= weatherData.visibility%> metres</h4>
+<h4>Wind speed:<%= windSp%> km/h</h4>
+<h4>Wind direction:<%= windDir %> </h4>
+<h4>Rain:<%= weatherData.rain %> </h4>
+<h4>Clouds:<%= weatherData.clouds.all%> %</h4>
+<h4>dt:<%= dt%> </h4>
+<h4>Sunrise:<%= sunrise%> </h4>
+<h4>Sunset:<%= sunset%> </h4>
+
+
+
+
+<%- include("footer") -%>

@@ -1,0 +1,19 @@
+<%- include("header") -%>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+<main class="form-signin w-100 m-auto">
+  <form action="/" method="post">
+    <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="AppLogo" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Enter your city</h1>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingPassword" name="cityName" required>
+      <label for="cityInput">City name </label>
+    </div>
+    <button class="btn btn-dark w-100 py-2 mt-3" type="submit">GO</button>
+    <p class="mt-5 mb-3 text-body-secondary">&copy; Vansh Nigam</p>
+  </form>
+</main>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+<%- include("footer") -%>
