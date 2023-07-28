@@ -1,7 +1,17 @@
 html,
 body {
   height: 100%;
-  background-color: #FDE2F3;
+  background-color: #02383C;
+  /* background-color: #00121F; */
+
+/* font-family: 'Poppins', sans-serif; */
+font-family: 'Lato', sans-serif;
+}
+.bg
+{
+  background-image: url("/images/image2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .form-signin {
@@ -13,20 +23,130 @@ body {
   z-index: 2;
 }
 
+.inputt
+{
+    text-transform: capitalize;
+}
+
 .form-signin input[type="text"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+#weatherReport
+{
+  margin-left: 38%;
+  margin-top: 100px;
+}
 .location
 {
-  background-color: #DAFFFB;
+  background-color: #D6E6F2;
 }
 .bg-color
 {
-  background-color: #DAFFFB;
+  background-color: #FFF0F5;
+  /* background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%); */
+  background-size: contain;
 }
 .rotate
 {
   transform: rotate(90deg);
+}
+#nav-text-color
+{
+  color: #CBE4DE;
+}
+.aqi
+{
+  margin:-50px auto 10px auto;
+  padding-top: 15px;
+  /* padding-left: 75px; */
+  /* background-color: #FBA1B7; */
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+
+  width: 50%;
+  height: 150px;
+}
+.aqi h1
+{
+  margin-top: -10px;
+  padding-left: 25px;
+  font-size: 50px;
+}
+.aqi h3
+{
+  border-top-left-radius: 40%;
+  border-bottom-right-radius: 40%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 40px;
+  font-style: italic;
+  font-size: 30px;
+  text-align: center;
+}
+.aqi-img
+{
+  height: 80px;
+  width: 130px;
+  position: relative;
+  top: 40px;
+  left: 800px;
+}
+.mx-1
+{
+  border-style:solid;
+  border-width: 0px;
+  box-shadow:0px 0px 10px 1px grey;
+  /* #D6E6F2 */
+  background-color: #CBE4DE;
+  /* background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%); */
+  background-size: contain;
+  border-radius: 2%;
+}
+.mx-1:hover
+{
+  border-style:solid;
+  border-width: 0px;
+  box-shadow:0px 0px 30px 1px grey;
+  /* #D6E6F2 */
+  background-color: #B6EADA;
+  /* background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%); */
+  background-size: contain;
+}
+
+.top
+{
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
+.bottom
+{
+  background-color: #0E8388;
+}
+.footer
+{
+  margin-bottom: 90%;
+  text-align: center;
+  color: #CBE4DE;
+}
+.primary-box
+{
+
+}
+.secondary-box
+{
+  height: 120px;
+  width: 100px;
+  text-align: center;
+}
+.margin-x
+{
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.aqi-box
+{
+  text-align: center;
+  height: 110px;
+  width: 10px;
 }

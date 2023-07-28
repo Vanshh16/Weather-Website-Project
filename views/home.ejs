@@ -1,17 +1,40 @@
 <%- include("header") -%>
 
-<body class="d-flex align-items-center py-4 bg-body-tertiary">
+<body class="bg">
+  <!-- Navbar -->
 
-<main class="form-signin w-100 m-auto">
+  <nav class="navbar navbar-expand-lg py-3" style="background-color:#2C3333;">
+  <div class="container-fluid">
+    <a class="navbar-brand h1 mb-0" id="nav-text-color" href="#">Weather</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" id="nav-text-color" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-text-color" href="#">Forecast</a>
+        </li>
+      </ul>
+      <form action="/" method="post" class="d-flex" role="search">
+        <input class="form-control me-2 inputt" type="search" placeholder="Search your city" aria-label="Search" name="cityName" required>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+  </nav>
+  <h1 id="weatherReport" style="font-size:50px;" >Weather Report</h1>
+<main class="form-signin w-100 m-auto mt-5">
   <form action="/" method="post">
-    <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="AppLogo" width="72" height="57">
+    <!-- <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="AppLogo" width="72" height="57"> -->
     <h1 class="h3 mb-3 fw-normal">Enter your city</h1>
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingPassword" name="cityName" required>
+      <input type="text" class="form-control inputt" id="floatingPassword" name="cityName" required>
       <label for="cityInput">City name </label>
     </div>
     <button class="btn btn-dark w-100 py-2 mt-3" type="submit">GO</button>
-    <p class="mt-5 mb-3 text-body-secondary">&copy; Vansh Nigam</p>
   </form>
 </main>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

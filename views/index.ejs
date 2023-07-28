@@ -1,21 +1,4 @@
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>Weather</title>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
-    <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
-    <!-- Custom styles for this template -->
-    <link href="/css/styles.css" rel="stylesheet">
-  </head>
+<%- include("header") -%>
  <body>
 
 <!-- Calculations -->
@@ -35,29 +18,57 @@
 <% if(weatherData.hasOwnProperty('rain')){%>
 <% rain=weatherData.rain["1h"];}%>
 
-  <!-- Navbar -->
+<!-- Aqi Calculations -->
 
-  <nav class="navbar navbar-expand-lg py-3" style="background-color: #e3f2fd;">
+<%let color = "blue";%>
+<% let aqi = aqiData.list[0].main.aqi; %>
+<% switch (aqi) {
+  case 1: %>
+<%aqi = "Good";%>
+<%color = "#1A5D1A";%>
+<% break;
+  case 2: %>
+  <% aqi = "Fair";%>
+  <% color = "#A2FF86";%>
+<% break;
+  case 3: %>
+<%aqi = "Moderate";%>
+<% color = "#FFE15D";%>
+<% break;
+  case 4: %>
+<% aqi = "Poor";%>
+<% color = "#FE6244";%>
+<% break;
+  case 5: %>
+<% aqi = "Very Poor";%>
+<% color = "#ED2B2A";%>
+<% break;
+  default:%>
+<% aqi = "Okay";
+  break; } %>
+
+
+
+  <!-- Navbar -->
+  <!-- style="background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);" -->
+  <nav class="navbar navbar-expand-lg py-3" id="nav-text-color" style="background-color:#2C3333;">
   <div class="container-fluid">
-    <a class="navbar-brand h1 mb-0" href="#">Weather</a>
+    <a class="navbar-brand h1 mb-0" id="nav-text-color" href="#">Weather</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" id="nav-text-color" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Forecast</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
+          <a class="nav-link" id="nav-text-color" href="#">Forecast</a>
         </li>
       </ul>
       <form action="/" method="post" class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search your city" aria-label="Search" name="cityName" required>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2 inputt" type="search" placeholder="Search your city" aria-label="Search" name="cityName" required>
+        <button class="btn btn-outline-success" type="submit" id="nav-text-color">Search</button>
       </form>
     </div>
   </div>
@@ -66,7 +77,7 @@
 <!-- Main Body -->
 
 <div class="container my-5">
-<div class="row p-5 text-center bg-body-tertiary rounded-3">
+<div class="row top p-5 text-center rounded-3">
   <div class="col">
     <h1 class="text-body-emphasis" ><strong style="font-size:70px"><%=weatherData.main.temp%> &deg; C</strong></h1>
     <h3 style="font-weight:bold;"><%= weatherData.weather[0].description%></h3>
@@ -78,25 +89,25 @@
 <h2><%=weatherData.name%> , <%=weatherData.sys.country%> </h2>
 </div>
  <div class="row p-5 text-center rounded-3">
-  <div class="col bg-color mx-3">
+  <div class="col mx-1">
     <img src="/images/sun.png" alt="sun" style="width:100px;margin-right: 105px;">
     <h4 class="my-2 py-2" style="margin-right: 105px;">Sunrise: <%= sunrise%></h4>
     <h4 class="my-2 py-2" style="margin-right: 110px;">Sunset: <%= sunset%></h4>
   </div>
-  <div class="col bg-color mx-3">
+  <div class="col mx-1">
     <img class="rotate" src="/images/temp.png" alt="sun" style="width:70px;margin-right: 100px;">
     <h4 class="my-2 py-2" style="margin-right: 100px;">Max. temperature: <%= weatherData.main.temp_max%>&deg; C</h4>
     <h4 class="my-2 py-2" style="margin-right: 100px;">Min. temperature: <%= weatherData.main.temp_min%>&deg; C</h4>
   </div>
 </div>
-  <div class="row p-5 text-center bg-body-tertiary rounded-3">
-    <div class="col bg-color mx-3">
+  <div class="row p-5 text-center rounded-3">
+    <div class="col mx-1">
       <h3 class="text-body-emphasis" style="margin-right: 140px;">Wind</h3>
       <img class="my-2" src="/images/wind.png" alt="sun" style="width:80px;margin-right: 140px; ">
       <h4 class="my-2 py-1" style="margin-right: 140px;">Speed: <%= windSp%> km/h</h4>
       <h4 class="my-2 py-1" style="margin-right: 130px;">Direction: <%= windDir %></h4>
     </div>
-    <div class="col bg-color mx-3">
+    <div class="col mx-1">
       <h3 style="">Rain</h3>
       <img class="my-2 py-1" src="/images/rain.png" alt="sun" style="width:100px;">
       <h4 class="my-2 py-1" style=""><%=rain%> mm</h4>
@@ -105,79 +116,80 @@
 </div>
 
 
-  <div class="row p-3 text-center bg-body-tertiary rounded-3">
-    <div class="col bg-color mx-3">
-      <h3 class="text-body-emphasis" style="margin-right: 140px;">Pressure</h3>
-      <h4 style="margin-right: 140px;"><%= weatherData.main.pressure%>hPa </h4>
+  <div class="row p-3 margin-x text-center rounded-3">
+    <div class="col mx-1 secondary-box">
+      <h3 class="text-body-emphasis mt-4" >Pressure</h3>
+      <h4 ><%= weatherData.main.pressure%>hPa </h4>
     </div>
-    <div class="col bg-color mx-3">
-      <h3 class="text-body-emphasis" style="margin-right: 140px;">Humidity</h3>
-      <h4 style="margin-right: 140px;"><%= weatherData.main.humidity%>% </h4>
+    <div class="col mx-1 secondary-box">
+      <h3 class="text-body-emphasis mt-4" >Humidity</h3>
+      <h4 ><%= weatherData.main.humidity%>% </h4>
     </div>
-    <div class="col bg-color mx-3">
-      <h3 class="text-body-emphasis" style="margin-right: 140px;">Visibilty</h3>
-      <h4 style="margin-right: 140px;"><%= weatherData.visibility%> metres</h4>
+    <div class="col mx-1 secondary-box">
+      <h3 class="text-body-emphasis mt-4" >Visibilty</h3>
+      <h4 ><%= weatherData.visibility%> metres</h4>
     </div>
-    <div class="col bg-color mx-3">
-      <h3 style="margin-right: 140px;">Clouds</h3>
-      <h4 style="margin-right: 130px;"><%= weatherData.clouds.all%> %</h4>
+    <div class="col mx-1 secondary-box">
+      <h3 class="text-body-emphasis mt-4" >Clouds</h3>
+      <h4 ><%= weatherData.clouds.all%> %</h4>
     </div>
   </div>
 
   <!-- AQI -->
 
-  <div  class="container bg-info m-3">
-  <h1>AQI</h1>
-  <h3>Very Good</h3>
-  </div>
+
   <div class="container my-3">
-    <div class="row p-3 text-center bg-body-tertiary rounded-3">
-      <div class="col bg-color mx-3">
-        <h3 class="text-body-emphasis" style="margin-right: 140px;">CO</h3>
-        <h4 style="margin-right: 140px;"><%= aqiData.list[0].components.co %></h4>
+    <img class="aqi-img" src="images/aqi.png" alt="">
+    <div class="aqi bottom">
+    <h1>AQI</h1>
+    <h3 style="background-color: <%=color%>;"><%= aqi %></h3>
+    </div>
+    <div class="row p-3 text-center rounded-3">
+      <div class="col mx-1 aqi-box">
+        <h3 class="text-body-emphasis mt-4" >CO</h3>
+        <h4 ><%= aqiData.list[0].components.co %></h4>
       </div>
-      <div class="col bg-color mx-3">
-        <h3 class="text-body-emphasis" style="margin-right: 140px;">NO</h3>
-        <h4 style="margin-right: 140px;"><%= aqiData.list[0].components.no %></h4>
+      <div class="col mx-1 aqi-box">
+        <h3 class="text-body-emphasis mt-4" >NO</h3>
+        <h4 ><%= aqiData.list[0].components.no %></h4>
       </div>
-      <div class="col bg-color mx-3">
-        <h3 class="text-body-emphasis" style="margin-right: 140px;">NO2</h3>
-        <h4 style="margin-right: 140px;"><%= aqiData.list[0].components.no2 %></h4>
+      <div class="col mx-1 aqi-box">
+        <h3 class="text-body-emphasis mt-4" >NO2</h3>
+        <h4 ><%= aqiData.list[0].components.no2 %></h4>
       </div>
-      <div class="col bg-color mx-3">
-        <h3 class="text-body-emphasis" style="margin-right: 140px;">O3</h3>
-        <h4 style="margin-right: 130px;"><%= aqiData.list[0].components.o3 %></h4>
+      <div class="col mx-1 aqi-box">
+        <h3 class="text-body-emphasis mt-4" >O3</h3>
+        <h4><%= aqiData.list[0].components.o3 %></h4>
       </div>
     </div>
-    <div class="row p-3 text-center bg-body-tertiary rounded-3">
-      <div class="col bg-color mx-3">
-        <h3 class="text-body-emphasis" style="margin-right: 140px;">SO2</h3>
-        <h4 style="margin-right: 140px;"><%= aqiData.list[0].components.so2 %></h4>
+    <div class="row p-3 text-center rounded-3">
+      <div class="col mx-1 aqi-box">
+        <h3 class="text-body-emphasis mt-4">SO2</h3>
+        <h4 ><%= aqiData.list[0].components.so2 %></h4>
       </div>
-      <div class="col bg-color mx-3">
-        <h3 class="text-body-emphasis" style="margin-right: 140px;">PM 2.5</h3>
-        <h4 style="margin-right: 140px;"><%= aqiData.list[0].components.pm2_5 %></h4>
+      <div class="col mx-1 aqi-box">
+        <h3 class="text-body-emphasis mt-4" >PM 2.5</h3>
+        <h4 ><%= aqiData.list[0].components.pm2_5 %></h4>
       </div>
-      <div class="col bg-color mx-3">
-        <h3 class="text-body-emphasis" style="margin-right: 140px;">PM 10</h3>
-        <h4 style="margin-right: 140px;"><%= aqiData.list[0].components.pm10 %></h4>
+      <div class="col mx-1 aqi-box">
+        <h3 class="text-body-emphasis mt-4" >PM 10</h3>
+        <h4 ><%= aqiData.list[0].components.pm10 %></h4>
       </div>
-      <div class="col bg-color mx-3">
-        <h3 class="text-body-emphasis" style="margin-right: 140px;">NH3</h3>
-        <h4 style="margin-right: 130px;"><%= aqiData.list[0].components.nh3 %>%</h4>
+      <div class="col aqi-box mx-1">
+        <h3 class="text-body-emphasis mt-4" >NH3</h3>
+        <h4 ><%= aqiData.list[0].components.nh3 %>%</h4>
       </div>
     </div>
   </div>
 
   <div class="pt-5">
     <h6 style="margin-left: 25px;">
-    <span>Latitude:<%= weatherData.coord.lat%></span>
-    <span>Longitude:<%= weatherData.coord.lon%></span></h6>
+    <span style="color:#CBE4DE;">Latitude:<%= weatherData.coord.lat%></span>
+    <span style="color:#CBE4DE;">Longitude:<%= weatherData.coord.lon%></span></h6>
   </div>
   <div class="">
-    <h6 style="margin-left: 25px;">As recorded at <%= dt%></h6>
+    <h6 style="margin-left: 25px; color:#CBE4DE;">As recorded at <%= dt%></h6>
   </div>
 
 
-  </body>
-</html>
+  <%- include("footer") %>
